@@ -13,10 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
+from django.views.static import serve
 
 from test_django import views
+
+# 内置视图错误处理，重写500页面
+handler500 = 'test_django.views.page_500'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,3 +36,8 @@ urlpatterns = [
     url(r'^index1/$', views.index_one, name='index_one'),
     url(r'^index2/$', views.index_two, name='index_two')
 ]
+
+# 添加自定义的静态资源目录访问
+urlpatterns += [url(r'^medias/(?P<path>.*)$', serve, {
+    'document_root': settings.MEDIA_ROOT
+})]

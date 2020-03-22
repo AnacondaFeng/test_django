@@ -37,6 +37,8 @@ def article(request, year):
     # 如果没有这个参数默认值是None
     month = request.GET.get('month', None)
     print('month:{0}'.format(month))
+    # 强制发生异常，测试500错误
+    raise ValueError
     return HttpResponse('article:' + year)
 
 
@@ -73,3 +75,7 @@ def index_one(request):
 
 def index_two(request):
     return HttpResponse('index two')
+
+def page_500(request):
+    """重写500响应页面"""
+    return HttpResponse('服务器异常！！！')
