@@ -2,8 +2,8 @@ import os
 from datetime import datetime
 
 from django.conf import settings
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.template import loader
 
 from test_django.settings import BASE_DIR
@@ -61,3 +61,15 @@ def now_use_file(request):
     return render(request, 'index.html', {
         'now': now
     })
+
+
+def index_one(request):
+    """访问该视图时重定向index two"""
+    # return HttpResponse('index one')
+    # return HttpResponseRedirect('/index2/')
+    # 使用reversed定位url name
+    # url = reversed('index_two')
+    return redirect('index_two')
+
+def index_two(request):
+    return HttpResponse('index two')

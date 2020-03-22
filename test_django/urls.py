@@ -20,11 +20,14 @@ from test_django import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-#     展示当前时间
+    #     展示当前时间
     url(r'^time/$', views.now_time),
     url(r'article/(?P<year>[0-9]{4})/$', views.article, name='article_detail'),
 
-#     读取文件方式展示，页面从html加载
-    url(r'now/$', views.now_use_file)
+    #     读取文件方式展示，页面从html加载
+    url(r'now/$', views.now_use_file),
 
+    #     重定向试验
+    url(r'^index1/$', views.index_one, name='index_one'),
+    url(r'^index2/$', views.index_two, name='index_two')
 ]
