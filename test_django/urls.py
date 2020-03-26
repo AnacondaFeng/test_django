@@ -34,7 +34,10 @@ urlpatterns = [
 
     #     重定向试验
     url(r'^index1/$', views.index_one, name='index_one'),
-    url(r'^index2/$', views.index_two, name='index_two')
+    url(r'^index2/$', views.index_two, name='index_two'),
+
+#     测试页面
+    url(r'$', views.test_page, name='test_page')
 ]
 
 # 添加自定义的静态资源目录访问

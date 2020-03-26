@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.template import loader
 
 from test_django.settings import BASE_DIR
@@ -79,3 +79,7 @@ def index_two(request):
 def page_500(request):
     """重写500响应页面"""
     return HttpResponse('服务器异常！！！')
+
+# study jquery
+def test_page(request):
+    return render_to_response('jquerytest.html')
